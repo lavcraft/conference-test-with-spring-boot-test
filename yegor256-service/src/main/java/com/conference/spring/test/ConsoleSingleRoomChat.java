@@ -20,8 +20,10 @@ import static com.conference.spring.reco.Slowrecommendation.Answer;
  */
 @Slf4j
 public class ConsoleSingleRoomChat {
+  static StreamObserver<Question> client;
+
   public static void main(String[] args) {
-    StreamObserver<Question> client = configureRecommendationClient("127.0.0.1", 10101);
+    client = configureRecommendationClient("127.0.0.1", 10101);
 
     BufferedReader br = null;
     try {
@@ -36,9 +38,7 @@ public class ConsoleSingleRoomChat {
           System.exit(0);
         }
 
-        client.onNext(Question.newBuilder()
-            .setBody(input)
-            .build());
+        ask(input);
 
         System.out.println("input : " + input);
         System.out.println("-----------\n");
@@ -58,27 +58,34 @@ public class ConsoleSingleRoomChat {
 
   }
 
+  private static void ask(String question) {
+    client.onNext(Question.newBuilder()
+        .setBody(question)
+        .build());
+  }
+
   private static StreamObserver<Question> configureRecommendationClient(String host, int port) {
     ManagedChannel channel = NettyChannelBuilder.forAddress(host, port)
         .usePlaintext(true)
         .build();
 
     RecommendationServiceStub recommendationServiceStub = RecommendationServiceGrpc.newStub(channel);
-    return recommendationServiceStub.streamRecommendation(new StreamObserver<Answer>() {
-      @Override
-      public void onNext(Answer answer) {
-        log.info("Answer: {}", answer);
-      }
+    return recommendationServiceStub.streamRecommendation(
+        new StreamObserver<Answer>() {
+          @Override
+          public void onNext(Answer answer) {
+            log.info("Answer: {}", answer);
+          }
 
-      @Override
-      public void onError(Throwable throwable) {
-        log.error("Error:", throwable);
-      }
+          @Override
+          public void onError(Throwable throwable) {
+            log.error("Error:", throwable);
+          }
 
-      @Override
-      public void onCompleted() {
-        log.info("completed");
-      }
-    });
+          @Override
+          public void onCompleted() {
+            log.info("completed");
+          }
+        });
   }
 }

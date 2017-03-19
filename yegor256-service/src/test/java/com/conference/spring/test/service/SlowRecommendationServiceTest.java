@@ -3,7 +3,6 @@ package com.conference.spring.test.service;
 import com.conference.spring.reco.RecommendationServiceGrpc;
 import com.conference.spring.reco.Slowrecommendation.Answer;
 import com.conference.spring.reco.Slowrecommendation.Question;
-import com.conference.spring.test.RecommendationApplication;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -31,7 +30,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = RecommendationApplication.class)
+@SpringBootTest
 public class SlowRecommendationServiceTest {
   ManagedChannel channel;
   @GRPCLocalPort
