@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.conference.spring.reco;
+
+option java_package = "com.conference.spring.reco";
+
+message Answer {
+    string stauts = 1;
+    string id = 2;
+    string operatorId = 3;
+    string answer = 4;
+    Question question = 5;
+}
+
+message Question {
+    string id = 1;
+    string userId = 2;
+    string body = 3;
+
+    QuestionType questionType = 4;
+}
+
+enum QuestionType {
+    JAVA = 0;
+    GROOVY = 1;
+    OTHER = 2;
+}
+
+service RecommendationService {
+    rpc getRecommendation (Question) returns (Answer) { }
+    rpc streamRecommendation(stream Question) returns (stream Answer) { }
+}
