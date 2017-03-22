@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.grpc.spring.boot.autoconfigure.annotation.GRpcService;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -22,6 +23,11 @@ import static com.conference.spring.reco.Slowrecommendation.Question;
 public class SlowRecommendationService extends RecommendationServiceGrpc.RecommendationServiceImplBase {
   private BlockingQueue<Question> questionsQueue = new ArrayBlockingQueue<>(10);
   private StreamObserver<Answer> responseObserver;
+
+  @PostConstruct
+  public void init(){
+    log.info("===========================================================================");
+  }
 
   @Scheduled(cron = "1/1 * * * * ?")
   public void scheduler() {

@@ -12,8 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static com.conference.spring.reco.Slowrecommendation.Answer;
-
 /**
  * @author tolkv
  * @version 19/03/2017
@@ -25,10 +23,7 @@ public class ConsoleSingleRoomChat {
   public static void main(String[] args) {
     client = configureRecommendationClient("127.0.0.1", 10101);
 
-    BufferedReader br = null;
-    try {
-      br = new BufferedReader(new InputStreamReader(System.in));
-
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       while (true) {
         System.out.print("Enter something [q-quit]: ");
         String input = br.readLine();
@@ -45,15 +40,7 @@ public class ConsoleSingleRoomChat {
       }
 
     } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (br != null) {
-        try {
-          br.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
+      log.error("catch error", e);
     }
 
   }
@@ -71,21 +58,7 @@ public class ConsoleSingleRoomChat {
 
     RecommendationServiceStub recommendationServiceStub = RecommendationServiceGrpc.newStub(channel);
     return recommendationServiceStub.streamRecommendation(
-        new StreamObserver<Answer>() {
-          @Override
-          public void onNext(Answer answer) {
-            log.info("Answer: {}", answer);
-          }
-
-          @Override
-          public void onError(Throwable throwable) {
-            log.error("Error:", throwable);
-          }
-
-          @Override
-          public void onCompleted() {
-            log.info("completed");
-          }
-        });
+        new ChatHandler()
+    );
   }
 }

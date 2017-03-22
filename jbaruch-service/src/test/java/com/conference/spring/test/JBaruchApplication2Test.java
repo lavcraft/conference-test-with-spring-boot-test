@@ -13,8 +13,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(
-//    properties = {"uglyprop=df", "dfsd=fsdfds"})
-public class JBaruchApplicationTest {
+//    classes = {TestConfProp.class,TestConf.class},
+//    properties = {"uglyprop=f", "dfsd=fsdfds"})
+public class JBaruchApplication2Test {
   @Autowired
   ApplicationContext context;
 
