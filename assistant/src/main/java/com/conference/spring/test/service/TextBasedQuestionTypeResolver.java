@@ -13,8 +13,14 @@ public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
   @Override
   public QuestionType resolveType(Question question) {
     return Arrays.stream(QuestionType.values())
-        .filter(questionType -> question.getBody().contains(questionType.toString()))
+        .filter(questionType -> question.getBody().toLowerCase()
+            .contains(
+                questionType.toString().toLowerCase()
+            )
+        )
         .findAny()
         .orElse(QuestionType.OTHER);
+
+
   }
 }

@@ -4,6 +4,7 @@ import org.grpc.spring.boot.autoconfigure.annotation.EnableGRpcServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author tolkv
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableAutoConfiguration
+@EnableScheduling
 @EnableGRpcServer
 public class RecommendationApplication {
   public static void main(String[] args) {

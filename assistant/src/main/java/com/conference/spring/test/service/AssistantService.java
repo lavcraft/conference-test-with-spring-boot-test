@@ -14,6 +14,6 @@ import com.conference.spring.test.domain.Question;
  * @author tolkv
  * @version 23/02/2017
  */
-public interface RecommendationService {
+public interface AssistantService {
   Answer handleQuestion(Question question);
 }

@@ -4,10 +4,8 @@ import com.conference.spring.reco.RecommendationServiceGrpc;
 import com.conference.spring.reco.Slowrecommendation;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
-import org.grpc.spring.boot.autoconfigure.annotation.GRpcService;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -19,43 +17,39 @@ import static com.conference.spring.reco.Slowrecommendation.Question;
  * @version 19/03/2017
  */
 @Slf4j
-@GRpcService
+//@GRpcService
 public class SlowRecommendationService extends RecommendationServiceGrpc.RecommendationServiceImplBase {
-  private BlockingQueue<Question> questionsQueue = new ArrayBlockingQueue<>(10);
-  private StreamObserver<Answer> responseObserver;
+  private BlockingQueue<QuestionWithIssuer> questionsQueue = new ArrayBlockingQueue<>(10);
 
-  @PostConstruct
-  public void init(){
-    log.info("===========================================================================");
+  @Scheduled(cron = "*/2 * * * * ?")
+  public void scheduler() {
+    QuestionWithIssuer poll = questionsQueue.poll();
+
+    if (poll != null && poll.getIssuer() != null) {
+      log.info("Question: {}", poll.getQuestion().getBody());
+      log.info("Egor thinking...");
+      log.info("Egor answering... {}");
+      poll.getIssuer().onNext(Answer.newBuilder()
+          .setId(poll.getQuestion().getId())
+          .setAnswer(poll.getQuestion().getBody() + generateAnswer())
+          .build());
+    } else {
+      log.info("Egor waiting...");
+    }
   }
 
-  @Scheduled(cron = "1/1 * * * * ?")
-  public void scheduler() {
-    log.info("Egor answering...");
-    Question poll = questionsQueue.poll();
-    log.info("question: {}", poll);
-    responseObserver.onNext(Answer.newBuilder()
-        .setId(poll.getId())
-        .setAnswer(poll.getBody()+ " yes")
-        .build());
+  // TODO сделать веселый список ответов Егора
+  private String generateAnswer() {
+    return " – yes";
   }
 
   @Override
   public StreamObserver<Slowrecommendation.Question> streamRecommendation(StreamObserver<Slowrecommendation.Answer> responseObserver) {
-    this.responseObserver = responseObserver;
     return new StreamObserver<Slowrecommendation.Question>() {
       @Override
       public void onNext(Question question) {
-        log.info("server onNext: {}", question);
-        responseObserver.onNext(Answer.newBuilder()
-            .setId(String.valueOf(question.getId()))
-            .setAnswer(question.getBody() + " too")
-            .build());
-
-        responseObserver.onNext(Answer.newBuilder()
-            .setId(String.valueOf(question.getId()))
-            .setAnswer("bye bye")
-            .build());
+        log.info("Add question to yegor256 queue and wait...");
+        questionsQueue.add(new QuestionWithIssuer(question, responseObserver));
       }
 
       @Override
@@ -65,8 +59,7 @@ public class SlowRecommendationService extends RecommendationServiceGrpc.Recomme
 
       @Override
       public void onCompleted() {
-        log.error("server: completed");
-
+        log.error("server: completed. Question count: {}", questionsQueue.remainingCapacity());
       }
     };
   }
