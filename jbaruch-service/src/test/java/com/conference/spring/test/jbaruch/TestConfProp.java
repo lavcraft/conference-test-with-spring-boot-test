@@ -1,4 +1,4 @@
-package com.conference.spring.test;
+package com.conference.spring.test.jbaruch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

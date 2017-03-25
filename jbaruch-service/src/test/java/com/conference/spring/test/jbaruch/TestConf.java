@@ -1,9 +1,7 @@
-package com.conference.spring.test;
+package com.conference.spring.test.jbaruch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -12,8 +10,8 @@ import javax.annotation.PostConstruct;
  * @version 20/03/2017
  */
 @Slf4j
-@Configuration
-@ComponentScan
+//@Configuration
+//@ComponentScan
 public class TestConf {
 
   @PostConstruct

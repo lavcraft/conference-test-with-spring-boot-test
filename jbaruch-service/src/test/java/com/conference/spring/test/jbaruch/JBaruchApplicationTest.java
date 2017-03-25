@@ -1,6 +1,8 @@
-package com.conference.spring.test;
+package com.conference.spring.test.jbaruch;
 
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +17,17 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  * @version 19/03/2017
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-    properties = {"uglyprop=df", "dfsd=fsdfds"})
+@SpringBootTest
 public class JBaruchApplicationTest {
   @Autowired
   ApplicationContext context;
 
+  @Autowired
+  JBaruchProperties jBaruchProperties;
+
   @Test
   public void contextLoad() {
-
+    Assert.assertThat(jBaruchProperties.getAnswers().size(), Matchers.greaterThan(5));
     MatcherAssert.assertThat(context, notNullValue());
   }
 

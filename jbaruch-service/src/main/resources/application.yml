@@ -1,6 +1,16 @@
 # jbaruch-service properties
 server:
-  port: 8081
+  port: 8002
 
-my:
-  option: hello
+jbaruch:
+  answers:
+    - Нормально делай нормально будет
+    - Всем артифактори
+    - Groovy рулит
+    - Смотри Groovy Puzzlers
+    - Смотри груви пазлеры
+    - leftpad и npm говно
+    - анпаблиш гейт говно
+    - nexus это хороший телефон, всё
+    - binary repository manager – artifactory
+    - менеджер бинарных репозиториев – artifactory

@@ -1,0 +1,12 @@
+server:
+  port: 8000
+spring.groovy.template.cache: false
+logging.level.org.springframework.web: DEBUG
+
+conference:
+  yegor256.url: http://localhost:8001
+  jbaruch.url: http://localhost:8002
+
+tokens:
+  jbaruch: npm leftpad artifactory артифактори groovy груви nexus нексус телефон binary repository manager бинарный менеджер зависимостей барух jbaruch
+  yegor256: ооп oop java джава жава жаба annotation annotations аннотации аннотация spring спринг декоратор decorator объекты объект object книги книга голые данные классы класс stackoverflow google

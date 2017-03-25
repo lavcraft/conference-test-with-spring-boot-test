@@ -1,6 +1,6 @@
-layout 'layout.tpl', title:'Messages : View',
+layout 'layout.tpl', title:'Chat: help me',
   content: contents {
     div(id:'main__messages') {
-        p()
+
     }
   }

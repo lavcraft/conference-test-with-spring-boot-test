@@ -4,6 +4,7 @@ import com.conference.spring.test.service.Question;
 import com.conference.spring.test.service.SlowRecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class QuestionController {
   private final SlowRecommendationService slowRecommendationService;
 
   @RequestMapping(path = "/question", method = RequestMethod.POST)
-  public ResponseEntity handleQuestion(Question question) {
+  public ResponseEntity handleQuestion(@RequestBody Question question) {
     slowRecommendationService.addQuestion(question);
     return ResponseEntity.ok().build();
   }

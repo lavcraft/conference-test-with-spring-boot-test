@@ -1,6 +1,7 @@
 package com.conference.spring.test;
 
 import org.hamcrest.MatcherAssert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,12 @@ public class Yegor256ApplicationTest {
   @Autowired
   private ApplicationContext context;
 
+  @Autowired
+  private Yegor256Properties yegor256Properties;
+
   @Test
   public void test() {
+    Assert.assertNotNull(yegor256Properties);
     MatcherAssert.assertThat(context, notNullValue());
   }
 }

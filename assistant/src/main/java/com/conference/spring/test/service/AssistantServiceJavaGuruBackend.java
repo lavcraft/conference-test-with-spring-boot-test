@@ -16,7 +16,7 @@ import java.util.Optional;
  * @version 22/03/2017
  */
 @Slf4j
-@Service
+@Service("composite.assistant")
 @RequiredArgsConstructor
 public class AssistantServiceJavaGuruBackend implements AssistantService {
   private final AnswerCacheService answerCacheService;
@@ -26,17 +26,21 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
 
   @Override
   public Answer handleQuestion(Question question) {
+    // only for jbaruch
     Optional<Answer> answer = answerCacheService.find(question);
 
     return answer.orElseGet(() -> {
       QuestionType questionType = questionTypeResolver.resolveType(question);
 
-      if (questionType == QuestionType.GROOVY) {
+      if (isJBaruchQuestion(questionType)) {
         return JBaruchClient.handleQuestion(question);
       }
 
-      // TODO implement this
-      return null;
+      return yegor256Client.handleQuestion(question);
     });
+  }
+
+  private boolean isJBaruchQuestion(QuestionType questionType) {
+    return questionType == QuestionType.JBARUCH;
   }
 }

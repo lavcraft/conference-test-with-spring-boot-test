@@ -1,4 +1,4 @@
-package com.conference.spring.test.domain;
+package com.conference.spring.test.jbaruch;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @author tolkv
- * @version 23/02/2017
+ * @version 25/03/2017
  */
 @Data
 @Builder
@@ -16,5 +16,5 @@ public class Answer {
   private String operatorId;
   private String answer;
 
-  private Question question;
+  private String questionId;
 }

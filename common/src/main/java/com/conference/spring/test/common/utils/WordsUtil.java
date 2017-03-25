@@ -5,7 +5,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +27,14 @@ public class WordsUtil {
             }
         }
 
-        return words.stream().filter(WordsUtil::isGarbage).collect(Collectors.toList());
+        return words.stream().filter(WordsUtil::notGarbage).collect(Collectors.toList());
     }
 
-    public static boolean isGarbage(String word) {
-        return context.getBean(GarbageBag.class).garbage.contains(word);
+    public static boolean notGarbage(String word) {
+        return !context.getBean(GarbageBag.class).garbage.contains(word);
     }
 
     public static void main(String[] args) {
-        System.out.println(isGarbage("tsdo"));
+        System.out.println(notGarbage("tsdo"));
     }
 }

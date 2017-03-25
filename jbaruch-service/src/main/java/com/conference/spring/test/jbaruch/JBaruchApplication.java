@@ -1,11 +1,9 @@
-package com.conference.spring.test;
+package com.conference.spring.test.jbaruch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @author tolkv
@@ -13,12 +11,9 @@ import javax.annotation.PostConstruct;
  */
 @Slf4j
 @SpringBootApplication
+@EnableConfigurationProperties(JBaruchProperties.class)
 public class JBaruchApplication {
-  @PostConstruct
-  public void init(){
-    log.info("BLABLA");
-  }
   public static void main(String[] args) {
-    SpringApplication.run(Config.class, args);
+    SpringApplication.run(JBaruchApplication.class, args);
   }
 }

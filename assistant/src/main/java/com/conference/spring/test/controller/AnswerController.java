@@ -33,7 +33,7 @@ public class AnswerController {
 
   @RequestMapping(value = "/answer", method = POST)
   public ResponseEntity answerAPI(@RequestBody Answer answer) {
-    log.info("aaaa {}", answer);
+    log.info("{} answer: {}", answer.getOperatorId(), answer);
     emitters.forEach(sseEmitter -> {
       try {
         sseEmitter.send(SseEmitter.event().comment("TEST").id("1").name("fds1"));

@@ -1,8 +1,10 @@
 package com.conference.spring.test.controller;
 
-import com.conference.spring.test.client.Yegor256Client;
+import com.conference.spring.test.domain.Answer;
 import com.conference.spring.test.domain.Question;
-import lombok.RequiredArgsConstructor;
+import com.conference.spring.test.service.AssistantService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +16,23 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @author tolkv
  * @version 25/03/2017
  */
+@Slf4j
 @RestController
-@RequiredArgsConstructor
 public class QuestionController {
-  private final Yegor256Client yegor256Client;
+  private final AssistantService assistantService;
+
+  public QuestionController(@Qualifier("composite.assistant") AssistantService assistantService) {
+    this.assistantService = assistantService;
+  }
 
   @RequestMapping(path = "/question", method = POST)
   public ResponseEntity handleQuestion(@RequestBody Question question) {
-    yegor256Client.handleQuestion(question);
+    Answer answer = assistantService.handleQuestion(question);
+    if (answer != null) {
+      log.info("{} answer: {}", answer.getOperatorId(), answer);
+    } else {
+      log.info("waiting yegor256 answer...");
+    }
     return ResponseEntity.ok().build();
   }
 }
