@@ -27,7 +27,7 @@ public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
         .filter(s -> yegor256TokensString.contains(s))
         .count();
 
-    if(jbaruchScore > yegor256Score) {
+    if (jbaruchScore > yegor256Score) {
       return QuestionType.JBARUCH;
     }
 
