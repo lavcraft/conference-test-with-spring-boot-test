@@ -28,6 +28,7 @@
 		<module>assistant</module>
 		<module>yegor256-service</module>
 		<module>jbaruch-service</module>
+		<module>common</module>
 	</modules>
 
 	<dependencies>
