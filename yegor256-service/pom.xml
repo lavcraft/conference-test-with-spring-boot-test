@@ -12,9 +12,12 @@
     <artifactId>yegor256-service</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.conference.spring.test.common</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
