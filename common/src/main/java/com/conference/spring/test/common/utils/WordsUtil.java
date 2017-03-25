@@ -7,6 +7,7 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Evegeny on 25/03/2017.
@@ -27,7 +28,7 @@ public class WordsUtil {
             }
         }
 
-        return words;
+        return words.stream().filter(WordsUtil::isGarbage).collect(Collectors.toList());
     }
 
     public static boolean isGarbage(String word) {
