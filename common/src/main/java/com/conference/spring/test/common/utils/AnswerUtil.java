@@ -30,7 +30,7 @@ public class AnswerUtil {
                 }
             }
         }
-        return 0;
+        return mark;
     }
 
 
@@ -38,6 +38,6 @@ public class AnswerUtil {
 
     public static void main(String[] args) {
         List<String> answers = Arrays.asList("annotations sucks", "decorator is the best design pattern");
-        System.out.println(giveAnswer(answers, "what do you think about annotations"));
+        System.out.println(giveAnswer(answers, "what do you think about annotations?"));
     }
 }
