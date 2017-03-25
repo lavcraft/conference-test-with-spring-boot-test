@@ -6,12 +6,11 @@ import lombok.Data;
 
 /**
  * @author tolkv
- * @version 22/03/2017
+ * @version 23/03/2017
  */
 @Data
 @Builder
 @AllArgsConstructor
-public class QuestionWithIssuer {
-  private final Question question;
-  private final Issuer issuer;
+public class Issuer {
+  private final String name;
 }

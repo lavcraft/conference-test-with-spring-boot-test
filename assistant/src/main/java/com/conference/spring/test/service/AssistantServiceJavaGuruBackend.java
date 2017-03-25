@@ -1,6 +1,5 @@
 package com.conference.spring.test.service;
 
-import com.conference.spring.reco.Slowrecommendation;
 import com.conference.spring.test.client.JBaruchClient;
 import com.conference.spring.test.client.Yegor256Client;
 import com.conference.spring.test.domain.Answer;
@@ -9,7 +8,6 @@ import com.conference.spring.test.domain.QuestionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.Optional;
 
@@ -37,17 +35,8 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
         return JBaruchClient.handleQuestion(question);
       }
 
-      return yegor256Client.handleQuestion(question, new ListenableFutureCallback<Slowrecommendation.Answer>() {
-        @Override
-        public void onFailure(Throwable ex) {
-
-        }
-
-        @Override
-        public void onSuccess(Slowrecommendation.Answer result) {
-
-        }
-      });
+      // TODO implement this
+      return null;
     });
   }
 }

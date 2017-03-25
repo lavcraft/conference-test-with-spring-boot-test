@@ -1,47 +1,19 @@
 package com.conference.spring.test.client;
 
-import com.conference.spring.reco.Slowrecommendation;
-import com.conference.spring.test.ChatHandler;
 import com.conference.spring.test.domain.Answer;
 import com.conference.spring.test.domain.Question;
-import io.grpc.stub.StreamObserver;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.util.concurrent.SettableListenableFuture;
-
-import static com.conference.spring.reco.RecommendationServiceGrpc.RecommendationServiceStub;
+import com.conference.spring.test.service.AssistantService;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author tolkv
  * @version 22/03/2017
  */
-@Service
-@RequiredArgsConstructor
-public class Yegor256Client {
-  private final RecommendationServiceStub recommendationServiceStub;
-
-  public Answer handleQuestion(Question question, ListenableFutureCallback<Slowrecommendation.Answer> callback) {
-
-    SettableListenableFuture<Slowrecommendation.Answer> future = new SettableListenableFuture<>();
-    future.addCallback(callback);
-
-    StreamObserver<Slowrecommendation.Question> client =
-        recommendationServiceStub.streamRecommendation(
-            new ChatHandler(future)
-        );
-
-    Slowrecommendation.Question q = Slowrecommendation.Question.newBuilder()
-        .setBody(question.getBody())
-        .setId(question.getId())
-        .setUserId(question.getUserId())
-        .setQuestionType(Slowrecommendation.QuestionType.valueOf(question.getQuestionType().toString()))
-        .build();
-
-    client.onNext(q);
-
-    return Answer.builder()
-        .answer("TODO")
-        .build();
-  }
+@FeignClient(name = "yegor256-service", url = "${conference.yegor256.url}")
+public interface Yegor256Client extends AssistantService {
+  @Override
+  @RequestMapping(path = "/question", method = RequestMethod.POST)
+  Answer handleQuestion(Question question);
 }

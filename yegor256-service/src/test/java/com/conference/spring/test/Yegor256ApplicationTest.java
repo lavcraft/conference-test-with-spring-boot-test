@@ -16,10 +16,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RecommendationApplicationTest {
-
+public class Yegor256ApplicationTest {
   @Autowired
-  ApplicationContext context;
+  private ApplicationContext context;
 
   @Test
   public void test() {

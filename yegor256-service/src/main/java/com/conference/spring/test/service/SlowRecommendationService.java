@@ -1,40 +1,56 @@
 package com.conference.spring.test.service;
 
-import com.conference.spring.reco.RecommendationServiceGrpc;
-import com.conference.spring.reco.Slowrecommendation;
-import io.grpc.stub.StreamObserver;
+import com.conference.spring.test.client.Answer;
+import com.conference.spring.test.client.AssistantClient;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
-import static com.conference.spring.reco.Slowrecommendation.Answer;
-import static com.conference.spring.reco.Slowrecommendation.Question;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author tolkv
  * @version 19/03/2017
  */
 @Slf4j
-//@GRpcService
-public class SlowRecommendationService extends RecommendationServiceGrpc.RecommendationServiceImplBase {
-  private BlockingQueue<QuestionWithIssuer> questionsQueue = new ArrayBlockingQueue<>(10);
+@Service
+@RequiredArgsConstructor
+public class SlowRecommendationService {
+  private final AssistantClient assistantClient;
+  private BlockingQueue<Question> questionsQueue = new ArrayBlockingQueue<>(10);
+  private AtomicLong atomicLong = new AtomicLong();
+
+  @PostConstruct
+  public void init() throws InterruptedException {
+    //TODO read answers
+  }
 
   @Scheduled(cron = "*/2 * * * * ?")
   public void scheduler() {
-    QuestionWithIssuer poll = questionsQueue.poll();
+    try {
+      Question poll = questionsQueue.poll();
 
-    if (poll != null && poll.getIssuer() != null) {
-      log.info("Question: {}", poll.getQuestion().getBody());
-      log.info("Egor thinking...");
-      log.info("Egor answering... {}");
-      poll.getIssuer().onNext(Answer.newBuilder()
-          .setId(poll.getQuestion().getId())
-          .setAnswer(poll.getQuestion().getBody() + generateAnswer())
-          .build());
-    } else {
-      log.info("Egor waiting...");
+      if (poll != null) {
+        log.info("Question: {}", poll.getBody());
+        log.info("Egor thinking...");
+        log.info("Egor answering... {}");
+
+        Answer answer = Answer.builder()
+            .operatorId("yegor256")
+            .id(String.valueOf(atomicLong.incrementAndGet()))
+            .questionId(poll.getId())
+            .build();
+
+        assistantClient.answer(answer);
+      } else {
+        log.info("Egor waiting...");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -43,29 +59,8 @@ public class SlowRecommendationService extends RecommendationServiceGrpc.Recomme
     return " – yes";
   }
 
-  @Override
-  public StreamObserver<Slowrecommendation.Question> streamRecommendation(StreamObserver<Slowrecommendation.Answer> responseObserver) {
-    return new StreamObserver<Slowrecommendation.Question>() {
-      @Override
-      public void onNext(Question question) {
-        log.info("Add question to yegor256 queue and wait...");
-        questionsQueue.add(new QuestionWithIssuer(question, responseObserver));
-      }
-
-      @Override
-      public void onError(Throwable throwable) {
-        log.error("server error", throwable);
-      }
-
-      @Override
-      public void onCompleted() {
-        log.error("server: completed. Question count: {}", questionsQueue.remainingCapacity());
-      }
-    };
-  }
-
-  @Override
-  public void getRecommendation(Question request, StreamObserver<Slowrecommendation.Answer> responseObserver) {
-    super.getRecommendation(request, responseObserver);
+  public void addQuestion(Question question) {
+    log.info("Add question to yegor256 queue and wait...");
+    questionsQueue.add(question);
   }
 }

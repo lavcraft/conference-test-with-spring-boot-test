@@ -2,6 +2,7 @@ package com.conference.spring.test.service;
 
 import com.conference.spring.test.domain.Question;
 import com.conference.spring.test.domain.QuestionType;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
  * @author tolkv
  * @version 23/02/2017
  */
+@Service
 public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
   @Override
   public QuestionType resolveType(Question question) {

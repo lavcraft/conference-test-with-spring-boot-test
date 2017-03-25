@@ -1,9 +1,8 @@
 package com.conference.spring.test;
 
-import org.grpc.spring.boot.autoconfigure.annotation.EnableGRpcServer;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -12,11 +11,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 
 @SpringBootApplication
-@EnableAutoConfiguration
+@EnableFeignClients
 @EnableScheduling
-@EnableGRpcServer
-public class RecommendationApplication {
+public class Yegor256Application {
   public static void main(String[] args) {
-    SpringApplication.run(RecommendationApplication.class, args);
+    SpringApplication.run(Yegor256Application.class, args);
   }
 }
