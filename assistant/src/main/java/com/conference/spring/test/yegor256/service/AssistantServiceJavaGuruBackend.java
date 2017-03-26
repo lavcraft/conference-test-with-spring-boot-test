@@ -1,7 +1,7 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.yegor256.service;
 
-import com.conference.spring.test.webassistant.client.JBaruchClient;
-import com.conference.spring.test.webassistant.client.Yegor256Client;
+import com.conference.spring.test.yegor256.client.JBaruchClient;
+import com.conference.spring.test.yegor256.client.Yegor256Client;
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;

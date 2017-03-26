@@ -1,7 +1,7 @@
-package com.conference.spring.test;
+package com.conference.spring.test.yegor256;
 
-import com.conference.spring.test.webassistant.service.Question;
-import com.conference.spring.test.webassistant.service.SlowRecommendationService;
+import com.conference.spring.test.yegor256.service.Question;
+import com.conference.spring.test.yegor256.service.SlowRecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

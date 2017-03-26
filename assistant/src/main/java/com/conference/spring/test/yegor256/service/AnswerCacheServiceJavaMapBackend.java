@@ -1,4 +1,4 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.yegor256.service;
 
 import com.conference.spring.test.webassistant.domain.*;
 import com.conference.spring.test.webassistant.domain.Question;

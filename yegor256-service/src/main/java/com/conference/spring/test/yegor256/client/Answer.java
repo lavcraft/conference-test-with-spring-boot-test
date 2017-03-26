@@ -1,4 +1,4 @@
-package com.conference.spring.test.webassistant.client;
+package com.conference.spring.test.yegor256.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

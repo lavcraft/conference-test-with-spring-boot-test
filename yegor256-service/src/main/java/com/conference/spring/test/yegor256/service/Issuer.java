@@ -1,4 +1,4 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.yegor256.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

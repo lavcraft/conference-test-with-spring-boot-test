@@ -1,4 +1,4 @@
-package com.conference.spring.test.webassistant.client;
+package com.conference.spring.test.yegor256.client;
 
 import feign.Response;
 import org.springframework.cloud.netflix.feign.FeignClient;

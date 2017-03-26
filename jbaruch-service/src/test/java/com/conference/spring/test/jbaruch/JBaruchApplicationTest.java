@@ -11,13 +11,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.MOCK;
 
 /**
  * @author tolkv
  * @version 19/03/2017
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = MOCK)
 public class JBaruchApplicationTest {
   @Autowired
   ApplicationContext context;

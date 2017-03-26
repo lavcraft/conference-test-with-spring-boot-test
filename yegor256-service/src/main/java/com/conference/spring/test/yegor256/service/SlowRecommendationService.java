@@ -1,9 +1,9 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.yegor256.service;
 
-import com.conference.spring.test.Yegor256Properties;
+import com.conference.spring.test.yegor256.Yegor256Properties;
 import com.conference.spring.test.common.utils.WordsUtil;
-import com.conference.spring.test.webassistant.client.Answer;
-import com.conference.spring.test.webassistant.client.AssistantClient;
+import com.conference.spring.test.yegor256.client.Answer;
+import com.conference.spring.test.yegor256.client.AssistantClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

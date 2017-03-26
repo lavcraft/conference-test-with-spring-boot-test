@@ -1,4 +1,4 @@
-package com.conference.spring.test;
+package com.conference.spring.test.yegor256;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
