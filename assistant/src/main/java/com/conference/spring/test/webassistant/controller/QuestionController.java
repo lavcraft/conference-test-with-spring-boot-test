@@ -2,8 +2,8 @@ package com.conference.spring.test.webassistant.controller;
 
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
-import com.conference.spring.test.yegor256.service.AssistantService;
-import com.conference.spring.test.yegor256.service.NotificationService;
+import com.conference.spring.test.webassistant.service.AssistantService;
+import com.conference.spring.test.webassistant.service.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;

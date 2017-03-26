@@ -1,6 +1,5 @@
 package com.conference.spring.test.webassistant;
 
-import com.conference.spring.test.TestConfiguration1;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {TestConfiguration1.class})
+@SpringBootTest
 public class DeveloperAssistantApplicationTests {
 
   @Autowired

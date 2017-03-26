@@ -1,4 +1,4 @@
-package com.conference.spring.test.yegor256.service;
+package com.conference.spring.test.webassistant.service;
 
 import com.conference.spring.test.webassistant.domain.Answer;
 import org.springframework.stereotype.Service;
