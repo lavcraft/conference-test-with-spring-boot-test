@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static com.conference.spring.test.common.utils.IconConstants.JBARUCH_ICON;
+
 /**
  * @author tolkv
  * @version 20/03/2017
@@ -26,7 +28,7 @@ public class FastAndTruthService {
     return Answer.builder()
         .id(String.valueOf(atomicLong.incrementAndGet()))
         .questionId(question.getId())
-        .operatorId("jbaruch")
+        .operatorId(JBARUCH_ICON)
         .answer(answerText)
         .build();
   }

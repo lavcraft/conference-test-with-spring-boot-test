@@ -1,7 +1,7 @@
 package com.conference.spring.test;
 
-import com.conference.spring.test.service.Question;
-import com.conference.spring.test.service.SlowRecommendationService;
+import com.conference.spring.test.webassistant.service.Question;
+import com.conference.spring.test.webassistant.service.SlowRecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

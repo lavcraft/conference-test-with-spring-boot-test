@@ -1,4 +1,4 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

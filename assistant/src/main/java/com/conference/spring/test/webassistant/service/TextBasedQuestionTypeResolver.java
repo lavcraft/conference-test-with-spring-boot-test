@@ -1,8 +1,8 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.service;
 
 import com.conference.spring.test.common.utils.WordsUtil;
-import com.conference.spring.test.domain.Question;
-import com.conference.spring.test.domain.QuestionType;
+import com.conference.spring.test.webassistant.domain.Question;
+import com.conference.spring.test.webassistant.domain.QuestionType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

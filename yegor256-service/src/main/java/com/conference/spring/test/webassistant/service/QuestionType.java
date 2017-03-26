@@ -1,13 +1,13 @@
-package com.conference.spring.test.domain;
+package com.conference.spring.test.webassistant.service;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author tolkv
- * @version 23/02/2017
+ * @version 25/03/2017
  */
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public enum QuestionType {
   YEGOR256(false), JBARUCH(true), OTHER(true);

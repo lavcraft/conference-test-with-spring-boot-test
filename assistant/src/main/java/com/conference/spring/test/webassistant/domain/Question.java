@@ -1,4 +1,4 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author tolkv
- * @version 25/03/2017
+ * @version 23/02/2017
  */
 @Data
 @Builder

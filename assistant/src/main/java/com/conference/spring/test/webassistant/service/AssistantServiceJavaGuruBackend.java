@@ -1,10 +1,10 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.service;
 
-import com.conference.spring.test.client.JBaruchClient;
-import com.conference.spring.test.client.Yegor256Client;
-import com.conference.spring.test.domain.Answer;
-import com.conference.spring.test.domain.Question;
-import com.conference.spring.test.domain.QuestionType;
+import com.conference.spring.test.webassistant.client.JBaruchClient;
+import com.conference.spring.test.webassistant.client.Yegor256Client;
+import com.conference.spring.test.webassistant.domain.Answer;
+import com.conference.spring.test.webassistant.domain.Question;
+import com.conference.spring.test.webassistant.domain.QuestionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

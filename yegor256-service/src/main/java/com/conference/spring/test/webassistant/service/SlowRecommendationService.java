@@ -1,9 +1,9 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.service;
 
 import com.conference.spring.test.Yegor256Properties;
-import com.conference.spring.test.client.Answer;
-import com.conference.spring.test.client.AssistantClient;
 import com.conference.spring.test.common.utils.WordsUtil;
+import com.conference.spring.test.webassistant.client.Answer;
+import com.conference.spring.test.webassistant.client.AssistantClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,6 +14,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.conference.spring.test.common.utils.AnswerUtil.giveAnswer;
+import static com.conference.spring.test.common.utils.IconConstants.YEGOR256_ICON;
 
 /**
  * @author tolkv
@@ -47,7 +48,7 @@ public class SlowRecommendationService {
         Answer answer = Answer.builder()
             .id(String.valueOf(atomicLong.incrementAndGet()))
             .questionId(poll.getId())
-            .operatorId("yegor256")
+            .operatorId(YEGOR256_ICON)
             .answer(answerText)
             .build();
 

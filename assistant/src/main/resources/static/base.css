@@ -1,0 +1,36 @@
+.messages__operatorId {
+    font-weight: 800;
+    color: brown;
+}
+
+.messages__operatorId:before {
+    content: '↪';
+    color: crimson;
+}
+
+.messages__prefix {
+    color: darkgray;
+}
+
+.messages__prefix:before {
+    content: ' ['
+}
+
+.messages__prefix:after {
+    content: '] '
+}
+
+.messages__text {
+    color: black;
+}
+
+.messages__text:before {
+    content: ' ✏ '
+}
+
+/* 💩 ✏ */
+
+.main__holder {
+    font-size: 1.5em;
+    width: inherit;
+}

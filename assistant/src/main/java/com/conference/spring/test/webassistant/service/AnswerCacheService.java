@@ -1,7 +1,7 @@
-package com.conference.spring.test.service;
+package com.conference.spring.test.webassistant.service;
 
-import com.conference.spring.test.domain.Answer;
-import com.conference.spring.test.domain.Question;
+import com.conference.spring.test.webassistant.domain.Answer;
+import com.conference.spring.test.webassistant.domain.Question;
 
 import java.util.Optional;
 

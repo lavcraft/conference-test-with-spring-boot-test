@@ -1,6 +1,8 @@
-package com.conference.spring.test.controller;
+package com.conference.spring.test.webassistant.controller;
 
-import com.conference.spring.test.domain.Answer;
+import com.conference.spring.test.webassistant.domain.Answer;
+import com.conference.spring.test.webassistant.service.NotificationService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+import static com.conference.spring.test.common.utils.IconConstants.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -22,10 +23,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class AnswerController {
-  private List<SseEmitter> emitters = new ArrayList<>();
+  private final NotificationService notificationService;
 
-  //TODO fix this
   @RequestMapping(value = "/answer", method = GET)
   public ModelAndView answerPage() {
     return new ModelAndView("pages/root");
@@ -34,30 +35,28 @@ public class AnswerController {
   @RequestMapping(value = "/answer", method = POST)
   public ResponseEntity answerAPI(@RequestBody Answer answer) {
     log.info("{} answer: {}", answer.getOperatorId(), answer);
-    emitters.forEach(sseEmitter -> {
-      try {
-        sseEmitter.send(SseEmitter.event().comment("TEST").id("1").name("fds1"));
-        sseEmitter.send(SseEmitter.event().comment("TEST1").id("2").name("fds2"));
-        sseEmitter.send(SseEmitter.event().comment("TEST2").id("3").name("fds3"));
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    });
-    return ResponseEntity.ok("");
+
+    notificationService.notify(answer);
+
+    return ResponseEntity.ok().build();
   }
 
   @RequestMapping(value = "/answer.sse")
   public SseEmitter answerJson() throws IOException {
     SseEmitter sseEmitter = new SseEmitter();
-    emitters.add(sseEmitter);
+    notificationService.addEmitter(sseEmitter);
 
     sseEmitter.onCompletion(() -> {
-      log.info("completed");
-      emitters.remove(sseEmitter);
+      log.info(FIRE_ICON + " destroy emitter"); // fire utf-8 icon
+      notificationService.removeEmitter(sseEmitter);
     });
 
-    sseEmitter.onTimeout(() -> log.info("timeout"));
-    sseEmitter.send(SseEmitter.event().comment("TEST").id("1"));
+    sseEmitter.onTimeout(() -> log.info(PIG_ICON + " timeout")); // pig utf-8 icon
+    notificationService.notify(Answer.builder()
+        .operatorId(MARTIAN_ICON) // martian utf-8 icon
+        .answer(DANCING_MAN_ICON + " Connected") // dancing man utf-8 icon
+        .build());
+
     return sseEmitter;
   }
 }

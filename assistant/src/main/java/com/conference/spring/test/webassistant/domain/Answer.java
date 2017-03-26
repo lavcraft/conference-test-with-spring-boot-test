@@ -1,4 +1,4 @@
-package com.conference.spring.test.domain;
+package com.conference.spring.test.webassistant.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +15,7 @@ public class Answer {
   private String id;
   private String operatorId;
   private String answer;
+  private String answerDate;
 
-  private Question question;
+  private String questionId;
 }

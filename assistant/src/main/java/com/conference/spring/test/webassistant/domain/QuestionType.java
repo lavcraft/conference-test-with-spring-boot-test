@@ -1,11 +1,11 @@
-package com.conference.spring.test.jbaruch;
+package com.conference.spring.test.webassistant.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
  * @author tolkv
- * @version 25/03/2017
+ * @version 23/02/2017
  */
 @AllArgsConstructor
 @Getter
