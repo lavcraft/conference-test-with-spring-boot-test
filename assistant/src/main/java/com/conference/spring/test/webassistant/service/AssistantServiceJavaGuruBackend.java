@@ -7,8 +7,12 @@ import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -23,6 +27,14 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
   private final QuestionTypeResolver questionTypeResolver;
   private final JBaruchClient JBaruchClient;
   private final Yegor256Client yegor256Client;
+  private Map<QuestionType, AssistantService> questionTypeAssistantServiceMap = new HashMap<>();
+
+  @Autowired
+  private void initMap(List<AssistantService> assistantServiceList) {
+    assistantServiceList.forEach(assistantService -> {
+
+    });
+  }
 
   @Override
   public Answer handleQuestion(Question question) {
@@ -38,6 +50,11 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
 
       return yegor256Client.handleQuestion(question);
     });
+  }
+
+  @Override
+  public QuestionType assistantName() {
+    return QuestionType.OTHER;
   }
 
   private boolean isJBaruchQuestion(QuestionType questionType) {

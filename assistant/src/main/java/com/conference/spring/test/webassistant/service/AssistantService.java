@@ -2,6 +2,7 @@ package com.conference.spring.test.webassistant.service;
 
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
+import com.conference.spring.test.webassistant.domain.QuestionType;
 
 /**
  * Если тип java - отправляем в очередь к Егору
@@ -16,4 +17,5 @@ import com.conference.spring.test.webassistant.domain.Question;
  */
 public interface AssistantService {
   Answer handleQuestion(Question question);
+  QuestionType assistantName();
 }

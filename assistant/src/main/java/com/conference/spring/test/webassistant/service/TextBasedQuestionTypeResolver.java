@@ -31,6 +31,10 @@ public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
       return QuestionType.JBARUCH;
     }
 
-    return QuestionType.YEGOR256;
+    if(jbaruchScore < yegor256Score) {
+      return QuestionType.YEGOR256;
+    }
+
+    return QuestionType.OTHER;
   }
 }
