@@ -18,6 +18,7 @@ import java.util.List;
 public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
   private final List<WordsFrequencyResolver> wordsFrequencyResolvers;
 
+  //TODO @jeka. Avoid switch logic
   @Override
   public QuestionType resolveType(Question question) {
     int maxMatches=0;
