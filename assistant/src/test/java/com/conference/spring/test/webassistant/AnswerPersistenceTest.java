@@ -37,6 +37,7 @@ public class AnswerPersistenceTest {
     questionEntity = entityManager.persist(questionEntity);
     AnswerEntity persist = entityManager.persist(AnswerEntity.builder()
         .text("answer")
+        .question(questionEntity)
         .build());
 
     assertNotNull(repository.findOne(persist.getId()));
