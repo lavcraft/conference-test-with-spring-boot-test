@@ -25,7 +25,7 @@ import java.util.Optional;
 public class AssistantServiceJavaGuruBackend implements AssistantService {
   private final AnswerCacheService answerCacheService;
   private final QuestionTypeResolver questionTypeResolver;
-  private final JBaruchClient JBaruchClient;
+  private final JBaruchClient jbaruchClient;
   private final Yegor256Client yegor256Client;
   private Map<QuestionType, AssistantService> questionTypeAssistantServiceMap = new HashMap<>();
 
@@ -36,6 +36,7 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
     });
   }
 
+  //TODO @jeka. Avoid switch logic
   @Override
   public Answer handleQuestion(Question question) {
     // only for jbaruch
@@ -45,7 +46,7 @@ public class AssistantServiceJavaGuruBackend implements AssistantService {
       QuestionType questionType = questionTypeResolver.resolveType(question);
 
       if (isJBaruchQuestion(questionType)) {
-        return JBaruchClient.handleQuestion(question);
+        return jbaruchClient.handleQuestion(question);
       }
 
       return yegor256Client.handleQuestion(question);

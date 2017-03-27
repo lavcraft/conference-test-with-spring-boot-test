@@ -18,6 +18,7 @@ public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
   @Value("${tokens.yegor256}")
   String yegor256TokensString;
 
+  //TODO @jeka. Avoid switch logic
   @Override
   public QuestionType resolveType(Question question) {
     long jbaruchScore = WordsUtil.getWords(question.getBody().toLowerCase()).stream()
