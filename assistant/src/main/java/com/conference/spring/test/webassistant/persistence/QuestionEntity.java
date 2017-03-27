@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-import static javax.persistence.GenerationType.*;
+import static javax.persistence.GenerationType.AUTO;
 
 /**
  * @author tolkv
@@ -16,11 +18,9 @@ import static javax.persistence.GenerationType.*;
 @Data
 @Builder
 @AllArgsConstructor
-public class AnswerEntity {
+public class QuestionEntity {
   @Id
   @GeneratedValue(strategy = AUTO)
   private String id;
   private String text;
-  @OneToOne
-  private QuestionEntity question;
 }
