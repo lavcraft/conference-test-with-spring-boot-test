@@ -35,13 +35,14 @@ public class AssistantServiceJavaGuruBackendImpl implements AssistantServiceJava
         });
     }
 
-    //TODO @jeka. Avoid switch logic
     @Override
     public Answer handleQuestion(Question question) {
         // only for jbaruch
-        Optional<Answer> answer = answerCacheService.find(question);
-        if (answer.isPresent()) {
-            return answer.get();
+        if (question.getQuestionType().isCacheable()) {
+            Optional<Answer> answer = answerCacheService.find(question);
+            if (answer.isPresent()) {
+                return answer.get();
+            }
         }
         AssistantService assistantService = questionTypeAssistantMap.get(question.getQuestionType());
         if (assistantService == null) {
