@@ -3,39 +3,36 @@ package com.conference.spring.test.webassistant.service;
 import com.conference.spring.test.common.utils.WordsUtil;
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author tolkv
  * @version 23/02/2017
  */
 @Service
+@RequiredArgsConstructor
 public class TextBasedQuestionTypeResolver implements QuestionTypeResolver {
-  @Value("${tokens.jbaruch}")
-  String jbaruchTokensString;
+  private final List<WordsFrequencyResolver> wordsFrequencyResolvers;
 
-  @Value("${tokens.yegor256}")
-  String yegor256TokensString;
-
-  //TODO @jeka. Avoid switch logic
   @Override
   public QuestionType resolveType(Question question) {
-    long jbaruchScore = WordsUtil.getWords(question.getBody().toLowerCase()).stream()
-        .filter(s -> jbaruchTokensString.contains(s))
-        .count();
-    long yegor256Score = WordsUtil.getWords(question.getBody().toLowerCase()).stream()
-        .filter(s -> yegor256TokensString.contains(s))
-        .count();
-
-    if (jbaruchScore > yegor256Score) {
-      return QuestionType.JBARUCH;
+    int maxMatches=0;
+    int winnerPosition = -1;
+    for (int i = 0; i < wordsFrequencyResolvers.size(); i++) {
+      WordsFrequencyResolver wordsFrequencyResolver = wordsFrequencyResolvers.get(i);
+      int match = wordsFrequencyResolver.match(question);
+      if (match > maxMatches) {
+        maxMatches = match;
+        winnerPosition=i;
+      }
     }
-
-    if(jbaruchScore < yegor256Score) {
-      return QuestionType.YEGOR256;
+    if (maxMatches > 0) {
+      return wordsFrequencyResolvers.get(winnerPosition).getQuestionType();
     }
-
     return QuestionType.OTHER;
   }
 }

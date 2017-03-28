@@ -3,7 +3,10 @@ package com.conference.spring.test.webassistant.controller;
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.service.AssistantService;
+import com.conference.spring.test.webassistant.service.AssistantServiceJavaGuruBackend;
 import com.conference.spring.test.webassistant.service.NotificationService;
+import com.conference.spring.test.webassistant.service.QuestionTypeResolver;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +22,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class QuestionController {
   private final NotificationService notificationService;
-  private final AssistantService assistantService;
+  private final AssistantServiceJavaGuruBackend assistantService;
+  private final QuestionTypeResolver questionTypeResolver;
 
-  public QuestionController(NotificationService notificationService,
-                            @Qualifier("composite.assistant") AssistantService assistantService) {
-    this.notificationService = notificationService;
-    this.assistantService = assistantService;
-  }
 
   @RequestMapping(path = "/question", method = POST)
   public ResponseEntity handleQuestion(@RequestBody Question question) {
+    question.setQuestionType(questionTypeResolver.resolveType(question));
     Answer answer = assistantService.handleQuestion(question);
     if (answer != null) {
       log.info("{} answer: {}", answer.getOperatorId(), answer);
