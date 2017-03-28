@@ -46,7 +46,7 @@ public class AssistantServiceJavaGuruBackendImpl implements AssistantServiceJava
         }
         AssistantService assistantService = questionTypeAssistantMap.get(question.getQuestionType());
         if (assistantService == null) {
-            return null; //// TODO: 28/03/2017 use default service
+            throw new UnsupportedOperationException("Not implemented yet");
         }
         return assistantService.handleQuestion(question);
     }

@@ -10,3 +10,11 @@ conference:
 tokens:
   jbaruch: npm leftpad artifactory артифактори groovy груви nexus нексус телефон binary repository manager бинарный менеджер репозиторий зависимостей барух jbaruch
   yegor256: ооп oop java джава жава жаба annotation annotations аннотации аннотация spring спринг декоратор decorator объекты объект object книги книга голые данные классы класс stackoverflow google
+
+assistant.default:
+  answers:
+    - когда Николай Алименков уйдет из Епама, он будет отвечать на подобные вопросы
+    - одному лишь богу ведом ответ
+    - даже егор не знает ответа на этот вопрос
+    - ты шутишь? Даже дети знают ответ на этот вопрос!
+    - ты бы еще про семантику volatile спросил!
