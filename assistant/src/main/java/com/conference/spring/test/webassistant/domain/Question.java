@@ -1,5 +1,6 @@
 package com.conference.spring.test.webassistant.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class Question {
   private String userId;
   private String body;
 
+  @JsonIgnore
   private QuestionType questionType;
 }
