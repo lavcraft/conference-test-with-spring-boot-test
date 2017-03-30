@@ -1,5 +1,7 @@
 package com.conference.spring.test.webassistant.service.resolvers.words;
 
+import com.conference.spring.test.common.GarbageProperties;
+import com.conference.spring.test.common.utils.WordsComposer;
 import com.conference.spring.test.webassistant.domain.Question;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +22,20 @@ public class Egor256WordsFrequencyResolverTest {
   @Autowired
   Yegor256WordsFrequencyResolver yegor256WordsFrequencyResolver;
 
+//  @Test
+  public void first_test() throws Exception {
+    Yegor256WordsFrequencyResolver yegor256WordsFrequencyResolver = new Yegor256WordsFrequencyResolver(new WordsComposer(new GarbageProperties()));
+    yegor256WordsFrequencyResolver.setAnswers("i am object and object within me");
+
+    int match = yegor256WordsFrequencyResolver.match(Question.builder()
+        .body("object in me")
+        .build());
+
+    assertThat(match, equalTo(1));
+  }
+
   @Test
-  public void name() throws Exception {
+  public void improved_test() throws Exception {
     yegor256WordsFrequencyResolver.setAnswers("i am object and object within me");
     int match = yegor256WordsFrequencyResolver.match(Question.builder()
         .body("object in me")

@@ -1,6 +1,5 @@
 package com.conference.spring.test.common;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
