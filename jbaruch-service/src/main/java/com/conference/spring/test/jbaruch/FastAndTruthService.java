@@ -1,6 +1,6 @@
 package com.conference.spring.test.jbaruch;
 
-import com.conference.spring.test.common.utils.AnswerUtil;
+import com.conference.spring.test.common.utils.AnswerComposer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,13 @@ import static com.conference.spring.test.common.utils.IconConstants.JBARUCH_ICON
 @RequiredArgsConstructor
 public class FastAndTruthService {
   private final JBaruchProperties jBaruchProperties;
+  private final AnswerComposer answerComposer;
   private AtomicLong atomicLong = new AtomicLong();
 
   public Answer handleQuestion(QuestionRequest question) {
     List<String> answers = jBaruchProperties.getAnswers();
 
-    String answerText = AnswerUtil.giveAnswer(answers, question.getBody());
+    String answerText = answerComposer.giveAnswerText(answers, question.getBody());
     return Answer.builder()
         .id(String.valueOf(atomicLong.incrementAndGet()))
         .questionId(question.getId())

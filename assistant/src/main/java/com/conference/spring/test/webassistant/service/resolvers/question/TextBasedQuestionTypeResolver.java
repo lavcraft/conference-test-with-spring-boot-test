@@ -1,10 +1,9 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.webassistant.service.resolvers.question;
 
-import com.conference.spring.test.common.utils.WordsUtil;
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;
+import com.conference.spring.test.webassistant.service.resolvers.words.WordsFrequencyResolver;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

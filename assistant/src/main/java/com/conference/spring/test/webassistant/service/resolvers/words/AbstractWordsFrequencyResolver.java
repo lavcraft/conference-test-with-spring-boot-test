@@ -1,9 +1,7 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.webassistant.service.resolvers.words;
 
-import com.conference.spring.test.common.utils.WordsUtil;
 import com.conference.spring.test.webassistant.domain.Question;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,10 +10,11 @@ import java.util.List;
 public abstract class AbstractWordsFrequencyResolver implements WordsFrequencyResolver {
     @Override
     public int match(Question question) {
-        return (int) WordsUtil.getWords(question.getBody().toLowerCase()).stream()
+        return (int) getWords(question.getBody()).stream()
                 .filter(s -> getAnswers().contains(s))
                 .count();
     }
 
-    abstract String getAnswers();
+    protected abstract String getAnswers();
+    protected abstract List<String> getWords(String text);
 }
