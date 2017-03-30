@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableFeignClients
 @EnableConfigurationProperties(AssistantProperties.class)
 public class DeveloperAssistantApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(DeveloperAssistantApplication.class, args);
 	}

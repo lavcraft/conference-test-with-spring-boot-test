@@ -1,4 +1,4 @@
-package com.conference.spring.test.webassistant.service;
+package com.conference.spring.test.webassistant.service.resolvers.question;
 
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;

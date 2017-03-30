@@ -2,13 +2,11 @@ package com.conference.spring.test.webassistant.controller;
 
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
-import com.conference.spring.test.webassistant.service.AssistantService;
 import com.conference.spring.test.webassistant.service.AssistantServiceJavaGuruBackend;
 import com.conference.spring.test.webassistant.service.NotificationService;
-import com.conference.spring.test.webassistant.service.QuestionTypeResolver;
+import com.conference.spring.test.webassistant.service.resolvers.question.QuestionTypeResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
