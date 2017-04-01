@@ -1,7 +1,6 @@
 package com.conference.spring.test.yegor256.service;
 
 import com.conference.spring.test.common.utils.AnswerComposer;
-import com.conference.spring.test.common.utils.WordsUtil;
 import com.conference.spring.test.yegor256.Yegor256Properties;
 import com.conference.spring.test.yegor256.client.Answer;
 import com.conference.spring.test.yegor256.client.AssistantClient;
