@@ -2,12 +2,9 @@ package com.conference.spring.test.common;
 
 import com.conference.spring.test.common.utils.AnswerComposer;
 import com.conference.spring.test.common.utils.WordsComposer;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * @author tolkv
@@ -15,15 +12,21 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 //@EnableConfigurationProperties(GarbageProperties.class)
+@PropertySource("classpath:user.properties")
 public class GarbageAutoConfiguration {
 
   @Bean
-  WordsComposer wordsComposer(GarbageProperties garbageProperties){
+  GarbageProperties garbageProperties(){
+    return new GarbageProperties();
+  }
+
+  @Bean
+  WordsComposer wordsComposer(GarbageProperties garbageProperties) {
     return new WordsComposer(garbageProperties);
   }
 
   @Bean
-  AnswerComposer answerComposer(GarbageProperties garbageProperties){
+  AnswerComposer answerComposer(GarbageProperties garbageProperties) {
     return new AnswerComposer(wordsComposer(garbageProperties));
   }
 

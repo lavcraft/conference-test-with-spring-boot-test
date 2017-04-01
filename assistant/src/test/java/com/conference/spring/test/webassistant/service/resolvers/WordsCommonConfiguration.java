@@ -2,8 +2,9 @@ package com.conference.spring.test.webassistant.service.resolvers;
 
 import com.conference.spring.test.common.GarbageProperties;
 import com.conference.spring.test.common.utils.WordsComposer;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.annotation.PostConstruct;
 
@@ -11,10 +12,10 @@ import javax.annotation.PostConstruct;
  * @author tolkv
  * @version 30/03/2017
  */
-@Configuration
-//@ComponentScan({
-//    "com.conference.spring.test.common"
-//})
+@TestConfiguration
+@ComponentScan({
+    "com.conference.spring.test.common"
+})
 public class WordsCommonConfiguration {
   @PostConstruct
   public void init() {
@@ -22,13 +23,7 @@ public class WordsCommonConfiguration {
   }
 
   @Bean
-  WordsComposer wordsComposer(){
-    return new WordsComposer(getGarbageProperties());
-  }
-
-  @Bean
-  public GarbageProperties getGarbageProperties() {
-    GarbageProperties garbageProperties = new GarbageProperties();
-    return garbageProperties;
+  WordsComposer wordsComposer(GarbageProperties garbageProperties){
+    return new WordsComposer(garbageProperties);
   }
 }

@@ -21,3 +21,4 @@ assistant.default:
 
 logging.level:
   org.springframework.test.context.cache: debug
+debug: true
