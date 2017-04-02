@@ -1,7 +1,7 @@
 package com.conference.spring.test.webassistant.service.resolvers.words;
 
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author tolkv
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({
     "com.conference.spring.test.webassistant.service.resolvers.words"
 })
-@Configuration
+@TestConfiguration
 public class WordsFrequencyResolverTestConfiguration {
 
 }

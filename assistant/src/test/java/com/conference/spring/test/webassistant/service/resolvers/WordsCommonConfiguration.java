@@ -1,7 +1,7 @@
 package com.conference.spring.test.webassistant.service.resolvers;
 
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 //@ComponentScan({
 //    "com.conference.spring.test.common"
 //})
-@Configuration
+@TestConfiguration
 @ComponentScan({
     "com.conference.spring.test.common"
 })
