@@ -14,7 +14,7 @@ public abstract class AbstractWordsFrequencyResolver implements WordsFrequencyRe
 
     @Override
     public int match(Question question) {
-        return (int) wordsComposer.extractWordsWithoutGarbage(question.getBody()).stream()
+        return (int) wordsComposer.extractWordsWithoutGarbage(question.getBody().toLowerCase()).stream()
                 .filter(s -> getAnswers().contains(s))
                 .count();
     }

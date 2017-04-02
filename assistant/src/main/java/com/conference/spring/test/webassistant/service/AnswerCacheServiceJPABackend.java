@@ -21,7 +21,7 @@ import static com.conference.spring.test.webassistant.help.QuestionAnswerHelper.
  */
 @Service
 @RequiredArgsConstructor
-public class AnswerCacheServiceJavaMapBackend implements AnswerCacheService {
+public class AnswerCacheServiceJPABackend implements AnswerCacheService {
   private final QuestionRepository questionRepository;
   private final AnswersRepository answersRepository;
 
