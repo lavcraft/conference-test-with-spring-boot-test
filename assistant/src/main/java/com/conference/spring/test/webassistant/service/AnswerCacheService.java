@@ -13,6 +13,9 @@ import java.util.Optional;
  */
 public interface AnswerCacheService {
 
-  Optional<Answer> find(Question question);
+  Answer find(Question question);
 
+
+  void put(String questionId, Answer answer);
+  Optional<Question> put(Question question);
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author tolkv
@@ -39,9 +38,14 @@ public class AssistantServiceJavaGuruBackendImpl implements AssistantServiceJava
     public Answer handleQuestion(Question question) {
         // only for jbaruch
         if (question.getQuestionType().isCacheable()) {
-            Optional<Answer> answer = answerCacheService.find(question);
-            if (answer.isPresent()) {
-                return answer.get();
+            Answer answer = answerCacheService.find(question);
+            if (answer != null && answer.getAnswer() != null) {
+                return answer;
+            }
+            if (question.getId() == null) {
+                String id = answerCacheService.put(question)
+                    .orElse(Question.builder().build()).getId();
+                question.setId(id);
             }
         }
         AssistantService assistantService = questionTypeAssistantMap.get(question.getQuestionType());
@@ -50,5 +54,4 @@ public class AssistantServiceJavaGuruBackendImpl implements AssistantServiceJava
         }
         return assistantService.handleQuestion(question);
     }
-
 }

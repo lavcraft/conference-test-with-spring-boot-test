@@ -1,12 +1,12 @@
 package com.conference.spring.test.webassistant.persistence;
 
+import com.conference.spring.test.webassistant.domain.QuestionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -17,10 +17,17 @@ import static javax.persistence.GenerationType.AUTO;
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class QuestionEntity {
   @Id
   @GeneratedValue(strategy = AUTO)
   private String id;
   private String text;
+  private String userId;
+  private QuestionType questionType;
+
+  @OneToOne
+  private AnswerEntity answer;
+
 }

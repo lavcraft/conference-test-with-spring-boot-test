@@ -23,4 +23,5 @@ public class AnswerEntity {
   @GeneratedValue(strategy = AUTO)
   private String id;
   private String text;
+  private String operatorId;
 }
