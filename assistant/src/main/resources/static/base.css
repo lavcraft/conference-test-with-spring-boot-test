@@ -10,6 +10,7 @@
 
 .messages__prefix {
     color: darkgray;
+    display: none;
 }
 
 .messages__prefix:before {
@@ -33,4 +34,39 @@
 .main__holder {
     font-size: 1.5em;
     width: inherit;
+}
+
+#question {
+    border: solid 1px brown;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+    width: 100%;
+    margin: 5px;
+}
+
+#submit {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 2px;
+    display: block;
+    font-size: 1em;
+}
+
+.input {
+    width: 30%;
+    float: left;
+    display: inline-block;
+}
+
+.chat {
+    display: inline-block;
+    margin-left: 1em;
 }

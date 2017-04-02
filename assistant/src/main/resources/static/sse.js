@@ -22,6 +22,12 @@ function ready() {
     };
 }
 $(function () {
+    $('#question').keydown(function(event) {
+        if (event.keyCode == 13) {
+            $(this.form).submit()
+            return false;
+        }
+    });
     $('#sendQuestionForm').submit(function (e) {
         e.preventDefault();
         var questionText = $("#question").val();
