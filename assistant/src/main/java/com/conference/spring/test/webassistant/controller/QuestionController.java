@@ -2,7 +2,6 @@ package com.conference.spring.test.webassistant.controller;
 
 import com.conference.spring.test.webassistant.domain.Answer;
 import com.conference.spring.test.webassistant.domain.Question;
-import com.conference.spring.test.webassistant.service.AnswerCacheService;
 import com.conference.spring.test.webassistant.service.AssistantServiceJavaGuruBackend;
 import com.conference.spring.test.webassistant.service.NotificationService;
 import com.conference.spring.test.webassistant.service.resolvers.question.QuestionTypeResolver;
@@ -24,7 +23,6 @@ public class QuestionController {
   private final NotificationService notificationService;
   private final AssistantServiceJavaGuruBackend assistantService;
   private final QuestionTypeResolver questionTypeResolver;
-  private final AnswerCacheService answerCacheService;
 
   @PostMapping("/question")
   public ResponseEntity handleQuestion(@RequestBody Question question) {

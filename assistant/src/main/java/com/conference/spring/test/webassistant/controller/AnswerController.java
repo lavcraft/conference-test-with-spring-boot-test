@@ -25,6 +25,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequiredArgsConstructor
 public class AnswerController {
+  public static final long HALF_HOUR_IN_MILLISECONDS = (long) 1000 * 1800;
   private final NotificationService notificationService;
 
   @RequestMapping(value = "/answer", method = GET)
@@ -43,7 +44,7 @@ public class AnswerController {
 
   @RequestMapping(value = "/answer.sse")
   public SseEmitter answerJson() throws IOException {
-    SseEmitter sseEmitter = new SseEmitter((long) Integer.MAX_VALUE);
+    SseEmitter sseEmitter = new SseEmitter(HALF_HOUR_IN_MILLISECONDS);
     notificationService.addEmitter(sseEmitter);
 
     sseEmitter.onCompletion(() -> {
