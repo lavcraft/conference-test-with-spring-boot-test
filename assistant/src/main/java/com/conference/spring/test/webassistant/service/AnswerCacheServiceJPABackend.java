@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.conference.spring.test.webassistant.help.QuestionAnswerHelper.mapToAnswer;
 import static com.conference.spring.test.webassistant.help.QuestionAnswerHelper.mapToAnswerEntity;
 
 /**
@@ -28,16 +29,14 @@ public class AnswerCacheServiceJPABackend implements AnswerCacheService {
   @Override
   public Answer find(Question question) {
     try {
-      Optional<Answer> answer = questionRepository.findFirstByText(question.getBody())
-          .map(QuestionAnswerHelper::mapToAnswer);
-      if (answer.isPresent()) {
-        return answer.get();
+      QuestionEntity questionEntity = questionRepository.findFirstByText(question.getBody());
+      if (questionEntity != null) {
+        return mapToAnswer(questionEntity);
       }
-      return null;
     } catch (Throwable e) {
       e.printStackTrace();
-      return null;
     }
+    return null;
   }
 
   @Override
