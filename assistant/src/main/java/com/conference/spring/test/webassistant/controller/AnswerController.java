@@ -43,7 +43,7 @@ public class AnswerController {
 
   @RequestMapping(value = "/answer.sse")
   public SseEmitter answerJson() throws IOException {
-    SseEmitter sseEmitter = new SseEmitter();
+    SseEmitter sseEmitter = new SseEmitter((long) Integer.MAX_VALUE);
     notificationService.addEmitter(sseEmitter);
 
     sseEmitter.onCompletion(() -> {
