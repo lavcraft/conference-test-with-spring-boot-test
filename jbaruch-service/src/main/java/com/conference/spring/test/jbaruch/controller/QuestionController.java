@@ -22,9 +22,10 @@ public class QuestionController {
   private final FastAndTruthService fastAndTruthService;
 
   @PostConstruct
-  public void inti(){
+  public void init(){
     System.out.println("fastAndTruthService = " + fastAndTruthService);
   }
+
   @RequestMapping(path = "/question", method = POST)
   public AnswerResponse handleQuestion(@RequestBody QuestionRequest question) {
     return AnswerResponse.builder()

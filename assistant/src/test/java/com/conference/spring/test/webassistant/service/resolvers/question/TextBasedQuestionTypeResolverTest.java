@@ -2,20 +2,19 @@ package com.conference.spring.test.webassistant.service.resolvers.question;
 
 import com.conference.spring.test.webassistant.domain.Question;
 import com.conference.spring.test.webassistant.domain.QuestionType;
+import com.conference.spring.test.webassistant.service.resolvers.ResolversAbstractCommonConfiguration;
 import com.conference.spring.test.webassistant.service.resolvers.WordsCommonConfiguration;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.conference.spring.test.webassistant.domain.QuestionType.JBARUCH;
 import static com.conference.spring.test.webassistant.domain.QuestionType.YEGOR256;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -23,18 +22,17 @@ import static org.junit.Assert.assertThat;
  * @version 30/03/2017
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@ContextHierarchy({
+@ContextHierarchy(value = {
     @ContextConfiguration(classes = WordsCommonConfiguration.class),
     @ContextConfiguration(classes = TextBasedQuestionTypeResolverTestConfiguration.class),
 })
-//@ContextConfiguration(classes = TextBasedQuestionTypeResolverTestConfiguration.class)
-@ActiveProfiles("yegor_vs_jbaruch")
-public class TextBasedQuestionTypeResolverTest {
+public class TextBasedQuestionTypeResolverTest extends ResolversAbstractCommonConfiguration {
   @Autowired
   TextBasedQuestionTypeResolver textBasedQuestionTypeResolver;
   @Value("${tokens.jbaruch}")
   String stringjb;
+  @Value("${tokens.yegor256}")
+  String stringyegor;
 
   @Test
   public void should_sth() throws Exception {
@@ -46,7 +44,8 @@ public class TextBasedQuestionTypeResolverTest {
         .body("fall in love with objects?")
         .build());
 
-    assertThat(jbaruchType, CoreMatchers.equalTo(JBARUCH));
-    assertThat(yegorType, CoreMatchers.equalTo(YEGOR256));
+    assertThat(jbaruchType, equalTo(JBARUCH));
+    assertThat(yegorType, equalTo(YEGOR256));
   }
+
 }

@@ -4,8 +4,8 @@ import com.conference.spring.test.common.utils.WordsComposer;
 import com.conference.spring.test.webassistant.service.resolvers.words.JBaruchWordsFrequencyResolver;
 import com.conference.spring.test.webassistant.service.resolvers.words.WordsFrequencyResolver;
 import com.conference.spring.test.webassistant.service.resolvers.words.Yegor256WordsFrequencyResolver;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.List;
  * @author tolkv
  * @version 30/03/2017
  */
-@TestConfiguration
+//@TestConfiguration
 //@PropertySource("classpath:application-yegor_vs_jbaruch.yml")
-//@Import(WordsCommonConfiguration.class)
+@Configuration
 public class TextBasedQuestionTypeResolverTestConfiguration {
 
   @PostConstruct
@@ -25,7 +25,7 @@ public class TextBasedQuestionTypeResolverTestConfiguration {
   }
 
   @Bean
-  Yegor256WordsFrequencyResolver yegor256WordsFrequencyResolver(WordsComposer composer) {
+  Yegor256WordsFrequencyResolver yegor256WordsFrequencyResolver2(WordsComposer composer) {
     return new Yegor256WordsFrequencyResolver(composer);
   }
 

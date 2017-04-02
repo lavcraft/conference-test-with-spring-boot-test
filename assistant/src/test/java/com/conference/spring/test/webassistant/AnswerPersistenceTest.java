@@ -4,12 +4,8 @@ import com.conference.spring.test.webassistant.persistence.AnswerEntity;
 import com.conference.spring.test.webassistant.persistence.AnswersRepository;
 import com.conference.spring.test.webassistant.persistence.QuestionEntity;
 import com.conference.spring.test.webassistant.persistence.QuestionRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -17,8 +13,8 @@ import static org.junit.Assert.assertNotNull;
  * @author tolkv
  * @version 27/03/2017
  */
-@RunWith(SpringRunner.class)
-@DataJpaTest
+//@RunWith(SpringRunner.class)
+//@DataJpaTest
 public class AnswerPersistenceTest {
   @Autowired
   private TestEntityManager entityManager;
@@ -29,7 +25,7 @@ public class AnswerPersistenceTest {
   @Autowired
   private QuestionRepository questionRepository;
 
-  @Test
+//  @Test
   public void should_persist_and_read() throws Exception {
     QuestionEntity questionEntity = QuestionEntity.builder()
         .text("question?")

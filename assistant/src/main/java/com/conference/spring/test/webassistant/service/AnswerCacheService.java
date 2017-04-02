@@ -15,7 +15,6 @@ public interface AnswerCacheService {
 
   Answer find(Question question);
 
-
   void put(String questionId, Answer answer);
   Optional<Question> put(Question question);
 }
