@@ -11,11 +11,14 @@ import com.conference.spring.test.webassistant.persistence.QuestionEntity;
  */
 public class QuestionAnswerHelper {
   public static Answer mapToAnswer(QuestionEntity questionEntity) {
+    if(questionEntity == null) return null;
     AnswerEntity answerEntity = questionEntity.getAnswer();
     return mapToAnswer(questionEntity, answerEntity);
   }
 
   public static Answer mapToAnswer(QuestionEntity questionEntity, AnswerEntity answerEntity) {
+    if(questionEntity == null || answerEntity == null) return null;
+
     return Answer.builder()
         .id(answerEntity.getId())
         .operatorId(answerEntity.getOperatorId())
@@ -25,6 +28,7 @@ public class QuestionAnswerHelper {
   }
 
   public static AnswerEntity mapToAnswerEntity(Answer answer) {
+    if(answer == null) return null;
     return AnswerEntity.builder()
         .text(answer.getAnswer())
         .id(answer.getId())
@@ -33,6 +37,7 @@ public class QuestionAnswerHelper {
   }
 
   public static Question mapToQuestion(QuestionEntity q) {
+    if(q == null) return null;
     return Question.builder()
         .body(q.getText())
         .id(q.getId())

@@ -28,10 +28,14 @@ public class AnswerCacheServiceJPABackend implements AnswerCacheService {
   @Override
   public Answer find(Question question) {
     try {
-      return questionRepository.findFirstByText(question.getBody())
-          .map(QuestionAnswerHelper::mapToAnswer)
-          .orElseGet(null);
+      Optional<Answer> answer = questionRepository.findFirstByText(question.getBody())
+          .map(QuestionAnswerHelper::mapToAnswer);
+      if (answer.isPresent()) {
+        return answer.get();
+      }
+      return null;
     } catch (Throwable e) {
+      e.printStackTrace();
       return null;
     }
   }
