@@ -29,6 +29,7 @@ public class WordsComposer {
   }
 
   private List<String> splitTextToWords(String text) {
+    text = text.replace("?", "");
     List<String> words = new ArrayList<>();
     BreakIterator breakIterator = BreakIterator.getWordInstance();
     breakIterator.setText(text);
