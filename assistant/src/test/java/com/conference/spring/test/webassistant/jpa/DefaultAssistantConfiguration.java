@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author tolkv
@@ -20,7 +21,7 @@ public class DefaultAssistantConfiguration {
 
   @Bean
   public AssistantProperties assistantProperties() {
-    return new AssistantProperties(new ArrayList<>(Arrays.asList("random1", "random2", "random3")));
+    return new AssistantProperties(new ArrayList<>(asList("random1", "random2", "random3")));
   }
 
   @Bean

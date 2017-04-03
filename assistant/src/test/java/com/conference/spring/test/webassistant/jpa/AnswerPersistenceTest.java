@@ -24,7 +24,7 @@ public class AnswerPersistenceTest {
   private TestEntityManager entityManager;
 
   @Autowired
-  private AnswersRepository repository;
+  private AnswersRepository answersRepository;
 
   @Autowired
   private QuestionRepository questionRepository;
@@ -39,7 +39,7 @@ public class AnswerPersistenceTest {
         .text("answer")
         .build());
 
-    assertNotNull(repository.findOne(persist.getId()));
+    assertNotNull(answersRepository.findOne(persist.getId()));
     assertNotNull(questionRepository.findOne(questionEntity.getId()));
   }
 }

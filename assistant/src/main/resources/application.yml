@@ -21,4 +21,5 @@ assistant.default:
 
 logging.level:
   org.springframework.test.context.cache: debug
-debug: true
+  org.hibernate: error
+#debug: true
