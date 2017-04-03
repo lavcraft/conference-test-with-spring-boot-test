@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +19,12 @@ public class GarbageProperties {
 
   @Value("${garbage}")
   void setGarbage(String[] garbage) {
-    this.garbage = Arrays.asList(garbage);
+
+    List<String> enGarbage = Arrays.asList(garbage);
+    List<String> ruGarbage = Arrays.asList("а", "или", "не", "и", "да", "но", "если");
+
+    this.garbage = new ArrayList<>();
+    this.garbage.addAll(enGarbage);
+    this.garbage.addAll(ruGarbage);
   }
 }
