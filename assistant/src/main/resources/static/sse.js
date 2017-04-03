@@ -15,10 +15,10 @@ function ready() {
             "<span class='messages__text'>" + answer.answer + "</span>";
 
         messages.insertBefore(div, messages.firstChild);
-
-        console.log("=======");
-        console.log(event);
-        console.log("=======");
+        //
+        // console.log("=======");
+        // console.log(event);
+        // console.log("=======");
     };
 }
 $(function () {
@@ -41,7 +41,8 @@ $(function () {
             },
             dataType: 'json'
         });
-        console.log("fuck");
+        console.log("sended");
+        $("#question").val("");
         return false;
     });
 });

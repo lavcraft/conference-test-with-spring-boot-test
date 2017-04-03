@@ -37,15 +37,16 @@
 }
 
 #question {
-    border: solid 1px brown;
-    border-radius: 8px;
+    border: solid 1px dimgray;
+    border-radius: 2px;
     padding: 10px;
     text-align: left;
     text-decoration: none;
     display: block;
     font-size: 1em;
     width: 100%;
-    margin: 5px;
+    resize: vertical;
+    outline: none;
 }
 
 #submit {
@@ -58,6 +59,7 @@
     border-radius: 2px;
     display: block;
     font-size: 1em;
+    margin: 10px 10px 15px 10px;
 }
 
 .input {
@@ -69,4 +71,5 @@
 .chat {
     display: inline-block;
     margin-left: 1em;
+    width: 60%;
 }

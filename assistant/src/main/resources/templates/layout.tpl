@@ -7,7 +7,6 @@ html {
   }
   body {
     div(class:'container') {
-      h1(title)
       div { content() }
     }
   }
