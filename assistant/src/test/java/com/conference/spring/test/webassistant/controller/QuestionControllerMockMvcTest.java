@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,15 +20,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest
+@MockBean(NotificationService.class)
+@MockBean(AssistantServiceJavaGuruBackend.class)
+@MockBean(QuestionTypeResolver.class)
 public class QuestionControllerMockMvcTest {
   @Autowired
   MockMvc mockMvc;
-  @MockBean
-  NotificationService notificationService;
-  @MockBean
-  AssistantServiceJavaGuruBackend assistantServiceJavaGuruBackend;
-  @MockBean
-  QuestionTypeResolver questionTypeResolver;
 
   @Test
   public void should_send_question() throws Exception {
