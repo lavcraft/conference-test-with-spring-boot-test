@@ -10,8 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author tolkv
@@ -29,10 +30,10 @@ public class QuestionControllerMockMvcTest {
   @Test
   public void should_send_question() throws Exception {
     mockMvc.perform(
-        MockMvcRequestBuilders.post("/question")
+        post("/question")
             .content("{ \"body\":\"Что нужно сделать чтобы было артифактори работал нормально?\"}")
             .accept("application/json")
             .contentType("application/json")
-    ).andExpect(MockMvcResultMatchers.status().isOk());
+    ).andExpect(status().isOk());
   }
 }
